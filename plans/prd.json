@@ -1,0 +1,74 @@
+[
+  {
+    "story": "Create config schema for portfolio holdings, thresholds, and alert settings",
+    "priority": 1,
+    "passes": true,
+    "verification": "config.json loads portfolio positions, mNAV thresholds, alert webhooks"
+  },
+  {
+    "story": "Build price fetcher for BTC, MSTR, STRD from public APIs",
+    "priority": 2,
+    "passes": true,
+    "verification": "src/prices.js fetches current prices from CoinGecko/Yahoo Finance"
+  },
+  {
+    "story": "Implement mNAV calculator (MSTR market cap / BTC holdings value)",
+    "priority": 3,
+    "passes": true,
+    "verification": "npm run analyze shows current mNAV ratio with breakdown"
+  },
+  {
+    "story": "Build portfolio value calculator with position tracking",
+    "priority": 4,
+    "passes": true,
+    "verification": "Shows total portfolio value, per-asset breakdown, daily change"
+  },
+  {
+    "story": "Implement drift detection (target allocation vs current allocation)",
+    "priority": 5,
+    "passes": true,
+    "verification": "npm run analyze shows drift percentage for each position"
+  },
+  {
+    "story": "Create rebalancing recommendation engine",
+    "priority": 6,
+    "passes": false,
+    "verification": "npm run rebalance outputs buy/sell amounts to restore target allocation"
+  },
+  {
+    "story": "Build alert system for threshold breaches (mNAV > 2.5x, mNAV < 0.85x)",
+    "priority": 7,
+    "passes": false,
+    "verification": "Console alerts + optional webhook when thresholds crossed"
+  },
+  {
+    "story": "Implement Monte Carlo simulation for portfolio projections",
+    "priority": 8,
+    "passes": false,
+    "verification": "npm run montecarlo runs 1000 sims, outputs percentile outcomes"
+  },
+  {
+    "story": "Add burn rate tracking and runway calculator",
+    "priority": 9,
+    "passes": false,
+    "verification": "Shows monthly burn, months of runway at current portfolio value"
+  },
+  {
+    "story": "Create daemon mode with cron-scheduled monitoring",
+    "priority": 10,
+    "passes": false,
+    "verification": "npm run daemon checks prices every hour, alerts on thresholds"
+  },
+  {
+    "story": "Build historical data storage and trend analysis",
+    "priority": 11,
+    "passes": false,
+    "verification": "data/history.json tracks daily snapshots, shows 7d/30d trends"
+  },
+  {
+    "story": "Add CLI dashboard with summary table output",
+    "priority": 12,
+    "passes": false,
+    "verification": "npm run monitor shows formatted table with all key metrics"
+  }
+]

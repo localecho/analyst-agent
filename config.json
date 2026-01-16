@@ -1,0 +1,40 @@
+{
+  "portfolio": {
+    "holdings": [
+      {
+        "symbol": "BTC",
+        "quantity": 0.5,
+        "targetAllocation": 0.40
+      },
+      {
+        "symbol": "MSTR",
+        "shares": 100,
+        "targetAllocation": 0.35
+      },
+      {
+        "symbol": "STRD",
+        "shares": 500,
+        "targetAllocation": 0.25
+      }
+    ]
+  },
+  "mstrData": {
+    "btcHoldings": 450000,
+    "sharesOutstanding": 180000000
+  },
+  "thresholds": {
+    "mnavHigh": 2.5,
+    "mnavLow": 0.85,
+    "driftTrigger": 0.05,
+    "rebalanceTrigger": 0.10
+  },
+  "alerts": {
+    "enabled": true,
+    "webhook": null,
+    "email": null
+  },
+  "burnRate": {
+    "monthlyExpenses": 5000,
+    "emergencyFund": 10000
+  }
+}
