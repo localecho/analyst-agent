@@ -1,0 +1,33 @@
+name: PRD Item
+description: Add item to plans/prd.json for Ralph loop
+title: "[PRD]: "
+labels: ["prd", "ralph"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      description: Feature description for prd.json
+      placeholder: "Build X that does Y"
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How to verify this passes
+      placeholder: "npm run X outputs Y"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (1=highest)
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+    validations:
+      required: true
