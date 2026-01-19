@@ -8,6 +8,7 @@ import { checkDriftAlerts, getActiveAlerts, formatAlerts, getDriftTrend, getReba
 import { runMonteCarlo, formatMonteCarloReport, runQuickSimulation } from './montecarlo.js';
 import { calculateBurnRate, formatBurnReport, addExpense, updateCashBalance, seedSampleData } from './burnrate.js';
 import { generateHarvestAlerts, formatHarvestReport, seedTaxLotData, getLots } from './taxharvest.js';
+import { formatHistoryReport, getSnapshots } from './history.js';
 
 const command = process.argv[2] || 'analyze';
 
@@ -59,6 +60,9 @@ async function main() {
       seedTaxLotData();
       console.log('Sample tax lot data seeded.');
       break;
+    case 'history':
+      showHistory();
+      break;
     default:
       showHelp();
   }
@@ -99,9 +103,39 @@ async function showPortfolio() {
 }
 
 async function runMonitor() {
-  console.log('Dashboard - coming soon');
+  // Full dashboard
+  const mnavResult = await calculateMnav();
+  const portfolioResult = await calculatePortfolio();
+  const burnResult = calculateBurnRate(3);
+
+  console.log('╔═══════════════════════════════════════════════════════════════╗');
+  console.log('║                    PORTFOLIO DASHBOARD                        ║');
+  console.log('╠═══════════════════════════════════════════════════════════════╣');
+
+  // mNAV section
+  const mnavStatus = mnavResult.status === 'UNDERVALUED' ? '🔵' : mnavResult.status === 'OVERVALUED' ? '🔴' : '🟢';
+  console.log(`║  mNAV: ${mnavResult.mnav}x ${mnavStatus} ${mnavResult.status.padEnd(30)}    ║`);
+  console.log(`║  BTC: $${mnavResult.btcPrice?.toLocaleString().padEnd(15)} MSTR: $${mnavResult.mstrPrice?.toFixed(2).padEnd(10)}  ║`);
+  console.log('╠═══════════════════════════════════════════════════════════════╣');
+
+  // Portfolio section
+  console.log(`║  Portfolio Value: $${portfolioResult.totalValue?.toLocaleString().padEnd(40)}  ║`);
+  for (const p of portfolioResult.positions || []) {
+    const driftIcon = p.needsRebalance ? '⚠️' : '✓';
+    console.log(`║    ${p.symbol.padEnd(6)} $${p.value?.toLocaleString().padEnd(12)} ${(p.actualAllocation*100).toFixed(0)}% (${p.driftPercent}% drift) ${driftIcon}  ║`);
+  }
+  console.log('╠═══════════════════════════════════════════════════════════════╣');
+
+  // Burn rate section
+  if (burnResult.monthlyBurn > 0) {
+    console.log(`║  Monthly Burn: $${burnResult.monthlyBurn?.toLocaleString().padEnd(10)} Runway: ${burnResult.runwayMonths?.toFixed(1)} months  ║`);
+  } else {
+    console.log('║  Burn Rate: Not configured (run burn-seed for demo)          ║');
+  }
+
+  console.log('╚═══════════════════════════════════════════════════════════════╝');
   console.log('');
-  await showPrices();
+  console.log(`Last updated: ${new Date().toISOString()}`);
 }
 
 async function showPrices() {
@@ -214,6 +248,13 @@ function showTaxLots() {
   }
 }
 
+function showHistory() {
+  const days = parseInt(process.argv[3]) || 30;
+  console.log(`Historical trends (${days} days):`);
+  console.log('');
+  console.log(formatHistoryReport(days));
+}
+
 function showHelp() {
   console.log('Available commands:');
   console.log('  analyze     - Run full analysis (mNAV + portfolio drift)');
@@ -229,6 +270,7 @@ function showHelp() {
   console.log('  taxharvest  - Show tax loss harvesting opportunities');
   console.log('  taxlots     - List all tax lots');
   console.log('  tax-seed    - Seed sample tax lot data');
+  console.log('  history     - Show historical trends [days]');
 }
 
 main().catch(console.error);

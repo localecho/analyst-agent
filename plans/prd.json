@@ -32,43 +32,43 @@
   {
     "story": "Create rebalancing recommendation engine",
     "priority": 6,
-    "passes": false,
+    "passes": true,
     "verification": "npm run rebalance outputs buy/sell amounts to restore target allocation"
   },
   {
     "story": "Build alert system for threshold breaches (mNAV > 2.5x, mNAV < 0.85x)",
     "priority": 7,
-    "passes": false,
+    "passes": true,
     "verification": "Console alerts + optional webhook when thresholds crossed"
   },
   {
     "story": "Implement Monte Carlo simulation for portfolio projections",
     "priority": 8,
-    "passes": false,
+    "passes": true,
     "verification": "npm run montecarlo runs 1000 sims, outputs percentile outcomes"
   },
   {
     "story": "Add burn rate tracking and runway calculator",
     "priority": 9,
-    "passes": false,
+    "passes": true,
     "verification": "Shows monthly burn, months of runway at current portfolio value"
   },
   {
     "story": "Create daemon mode with cron-scheduled monitoring",
     "priority": 10,
-    "passes": false,
+    "passes": true,
     "verification": "npm run daemon checks prices every hour, alerts on thresholds"
   },
   {
     "story": "Build historical data storage and trend analysis",
     "priority": 11,
-    "passes": false,
+    "passes": true,
     "verification": "data/history.json tracks daily snapshots, shows 7d/30d trends"
   },
   {
     "story": "Add CLI dashboard with summary table output",
     "priority": 12,
-    "passes": false,
+    "passes": true,
     "verification": "npm run monitor shows formatted table with all key metrics"
   }
 ]

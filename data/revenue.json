@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "id": "1",
+      "date": "2026-01-01",
+      "amount": 5000,
+      "source": "subscriptions",
+      "recurring": true
+    },
+    {
+      "id": "2",
+      "date": "2025-12-01",
+      "amount": 4500,
+      "source": "subscriptions",
+      "recurring": true
+    }
+  ],
+  "mrr": 5000,
+  "cashBalance": 150000
+}

@@ -10,6 +10,8 @@
     "monitor": "node src/index.js monitor",
     "rebalance": "node src/index.js rebalance",
     "montecarlo": "node src/index.js montecarlo",
+    "burnrate": "node src/index.js burnrate",
+    "history": "node src/index.js history",
     "daemon": "node src/daemon.js",
     "test": "node --test"
   },

@@ -1,0 +1,59 @@
+{
+  "categories": [
+    "payroll",
+    "infrastructure",
+    "software",
+    "marketing",
+    "office"
+  ],
+  "entries": [
+    {
+      "id": "1",
+      "date": "2026-01-01",
+      "amount": 15000,
+      "category": "payroll",
+      "recurring": true,
+      "frequency": "monthly"
+    },
+    {
+      "id": "2",
+      "date": "2026-01-01",
+      "amount": 2500,
+      "category": "infrastructure",
+      "recurring": true,
+      "frequency": "monthly"
+    },
+    {
+      "id": "3",
+      "date": "2026-01-01",
+      "amount": 500,
+      "category": "software",
+      "recurring": true,
+      "frequency": "monthly"
+    },
+    {
+      "id": "4",
+      "date": "2026-01-05",
+      "amount": 3000,
+      "category": "marketing",
+      "recurring": false
+    },
+    {
+      "id": "5",
+      "date": "2025-12-15",
+      "amount": 12000,
+      "category": "payroll",
+      "recurring": true,
+      "frequency": "monthly"
+    },
+    {
+      "id": "6",
+      "date": "2025-12-01",
+      "amount": 2500,
+      "category": "infrastructure",
+      "recurring": true,
+      "frequency": "monthly"
+    }
+  ],
+  "monthlyBudget": 25000
+}
